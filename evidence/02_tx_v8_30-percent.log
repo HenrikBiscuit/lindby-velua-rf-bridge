@@ -1,0 +1,97 @@
+20:15:07.208 > ESP-ROM:esp32s3-20210327
+20:15:07.216 > Build:Mar 27 2021
+20:15:07.216 > rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+20:15:07.222 > SPIWP:0xee
+20:15:07.222 > mode:DIO, clock div:1
+20:15:07.222 > load:0x3fce2820,len:0x10cc
+20:15:07.227 > load:0x403c8700,len:0xc2c
+20:15:07.227 > load:0x403cb700,len:0x30b0
+20:15:07.227 > entry 0x403c88b8
+20:15:08.818 > 
+20:15:08.818 > TRANSMIT BOARD v8 (MCSM1 fix): deterministic On/off switch, 250k. PARTNUM 0x80 (expect 0x80)
+20:15:08.823 > power = PATABLE 0xC0 (level 7/9) [high - for FAR/through walls]
+20:15:10.631 > Switch: t=toggle (=1 flip) | ]/[ power (0xC0) | +/- flips-per-press | 0-7 pointer | r reset
+20:15:10.637 >   Reliability = RF range: keep REPEATS=1, aim the board at the lamp, raise power with ].
+20:15:12.694 > TOGGLE -> 1 flip(s), state 3 (cnt B801), PATABLE 0xC0
+20:15:14.396 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:15.498 > TOGGLE -> 1 flip(s), state 4 (cnt 8A02), PATABLE 0xC0
+20:15:17.200 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:17.907 > TOGGLE -> 1 flip(s), state 5 (cnt 9B12), PATABLE 0xC0
+20:15:19.608 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:20.176 > TOGGLE -> 1 flip(s), state 6 (cnt 9A31), PATABLE 0xC0
+20:15:21.878 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:22.264 > TOGGLE -> 1 flip(s), state 7 (cnt 8B21), PATABLE 0xC0
+20:15:23.966 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:25.941 > TOGGLE -> 1 flip(s), state 0 (cnt B922), PATABLE 0xC0
+20:15:27.643 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:28.971 > TOGGLE -> 1 flip(s), state 1 (cnt A832), PATABLE 0xC0
+20:15:30.672 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:31.674 > TOGGLE -> 1 flip(s), state 2 (cnt A911), PATABLE 0xC0
+20:15:33.376 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:33.854 > TOGGLE -> 1 flip(s), state 3 (cnt B801), PATABLE 0xC0
+20:15:35.556 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:36.288 > TOGGLE -> 1 flip(s), state 4 (cnt 8A02), PATABLE 0xC0
+20:15:37.989 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:39.663 > power = PATABLE 0xE0 (level 8/9) [high - for FAR/through walls]
+20:15:40.794 > power = PATABLE 0xC0 (level 7/9) [high - for FAR/through walls]
+20:15:41.120 > power = PATABLE 0xA0 (level 6/9) 
+20:15:43.152 > TOGGLE -> 1 flip(s), state 5 (cnt 9B12), PATABLE 0xA0
+20:15:44.860 >   tap stats: 861 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:46.048 > TOGGLE -> 1 flip(s), state 6 (cnt 9A31), PATABLE 0xA0
+20:15:47.750 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:48.205 > TOGGLE -> 1 flip(s), state 7 (cnt 8B21), PATABLE 0xA0
+20:15:49.907 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:50.534 > TOGGLE -> 1 flip(s), state 0 (cnt B922), PATABLE 0xA0
+20:15:52.235 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:53.165 > TOGGLE -> 1 flip(s), state 1 (cnt A832), PATABLE 0xA0
+20:15:54.867 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:55.431 > TOGGLE -> 1 flip(s), state 2 (cnt A911), PATABLE 0xA0
+20:15:57.132 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:15:58.064 > TOGGLE -> 1 flip(s), state 3 (cnt B801), PATABLE 0xA0
+20:15:59.767 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:00.014 > TOGGLE -> 1 flip(s), state 4 (cnt 8A02), PATABLE 0xA0
+20:16:01.716 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:02.991 > TOGGLE -> 1 flip(s), state 5 (cnt 9B12), PATABLE 0xA0
+20:16:04.693 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:04.699 > TOGGLE -> 1 flip(s), state 6 (cnt 9A31), PATABLE 0xA0
+20:16:06.402 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:06.558 > TOGGLE -> 1 flip(s), state 7 (cnt 8B21), PATABLE 0xA0
+20:16:08.259 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:08.492 > TOGGLE -> 1 flip(s), state 0 (cnt B922), PATABLE 0xA0
+20:16:10.193 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:10.261 > TOGGLE -> 1 flip(s), state 1 (cnt A832), PATABLE 0xA0
+20:16:11.963 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:12.054 > TOGGLE -> 1 flip(s), state 2 (cnt A911), PATABLE 0xA0
+20:16:13.756 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:13.761 > TOGGLE -> 1 flip(s), state 3 (cnt B801), PATABLE 0xA0
+20:16:15.460 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:15.467 > TOGGLE -> 1 flip(s), state 4 (cnt 8A02), PATABLE 0xA0
+20:16:17.164 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:17.730 > TOGGLE -> 1 flip(s), state 5 (cnt 9B12), PATABLE 0xA0
+20:16:19.431 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:20.571 > TOGGLE -> 1 flip(s), state 6 (cnt 9A31), PATABLE 0xA0
+20:16:22.274 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:22.679 > TOGGLE -> 1 flip(s), state 7 (cnt 8B21), PATABLE 0xA0
+20:16:24.381 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:25.957 > TOGGLE -> 1 flip(s), state 0 (cnt B922), PATABLE 0xA0
+20:16:27.660 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:28.370 > TOGGLE -> 1 flip(s), state 1 (cnt A832), PATABLE 0xA0
+20:16:30.072 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:30.327 > TOGGLE -> 1 flip(s), state 2 (cnt A911), PATABLE 0xA0
+20:16:32.028 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:32.269 > TOGGLE -> 1 flip(s), state 3 (cnt B801), PATABLE 0xA0
+20:16:33.977 >   tap stats: 861 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:34.682 > TOGGLE -> 1 flip(s), state 4 (cnt 8A02), PATABLE 0xA0
+20:16:36.390 >   tap stats: 861 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:38.321 > TOGGLE -> 1 flip(s), state 5 (cnt 9B12), PATABLE 0xA0
+20:16:40.029 >   tap stats: 861 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:40.396 > TOGGLE -> 1 flip(s), state 6 (cnt 9A31), PATABLE 0xA0
+20:16:42.098 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:42.455 > TOGGLE -> 1 flip(s), state 7 (cnt 8B21), PATABLE 0xA0
+20:16:44.157 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:45.215 > TOGGLE -> 1 flip(s), state 0 (cnt B922), PATABLE 0xA0
+20:16:46.917 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:47.192 > TOGGLE -> 1 flip(s), state 1 (cnt A832), PATABLE 0xA0
+20:16:48.894 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
+20:16:49.159 > TOGGLE -> 1 flip(s), state 2 (cnt A911), PATABLE 0xA0
+20:16:50.861 >   tap stats: 858 pkts, avg TX 849 us/pkt, period 1981 us, timeouts 0, underflows 0
