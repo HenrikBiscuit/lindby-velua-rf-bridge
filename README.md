@@ -12,8 +12,8 @@ next room with a couple of doors in between.
 Home Assistant --(Wi-Fi)--> ESP32-S3 --SPI--> CC2500 + CC2591 PA ))) 2.4 GHz ))) lamp
 ```
 
-Status: all 8 buttons work from the serial monitor. Home Assistant integration (ESPHome) is
-the next step.
+Status: all 8 buttons work. There is also an ESPHome version in
+[firmware/esphome](firmware/esphome) that puts the buttons into Home Assistant.
 
 The protocol details are in [docs/protocol.md](docs/protocol.md) and the hardware I used is in
 [docs/hardware.md](docs/hardware.md).
@@ -132,6 +132,7 @@ What came out of it:
 
 ```
 firmware/velua-transmitter/     ESP32 + CC2500 transmitter, all buttons, tap and hold
+firmware/esphome/               the same transmitter as an ESPHome device for Home Assistant
 tools/cc2500-raw-capture/       CC2500 raw capture without sync word (found the preamble)
 tools/nrf24-button-recorder/    nRF24 recorder I used to decode the buttons
 tools/a7105-scanner/            A7105 bring-up and scanner (didn't work out)
