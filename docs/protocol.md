@@ -1,80 +1,82 @@
-# Lindby Velua remote — protocol notes
+# Protocol notes
 
-Everything below was measured on one remote (PCB marking **YM-2.4G-B**, 8 buttons, one
-unmarked SOP16 chip, 16 MHz crystal) and one lamp (Lindby Velua, Lampenwelt art. 10041966).
-Other remotes may use a different ID (the constant `0D BF 29` bytes are probably the remote ID).
+All of this was measured on my own remote (PCB marked YM-2.4G-B, 8 buttons, one unmarked SOP16
+chip, 16 MHz crystal) and my lamp (Lindby Velua, Lampenwelt art. 10041966). Other remotes might
+use a different ID. I think the constant `0D BF 29` bytes are the remote ID.
 
-## RF layer
+## Radio
 
 | Parameter | Value |
 |---|---|
-| Modulation | 2-FSK, wide deviation (≈ ±250 kHz) |
+| Modulation | 2-FSK, wide deviation (around ±250 kHz) |
 | Data rate | 250 kbps (4 µs per bit) |
-| Channels | 2402.00, 2448.00, 2478.95 MHz (nRF24 channels 2 / 48 / 79) |
-| Hopping | 3 packets per channel, then hop; full cycle ≈ 11.69 ms |
-| Packet spacing | ≈ 1245 µs on one channel |
-| CRC / whitening | none at the RF layer (the frame is used as-is) |
+| Channels | 2402.00, 2448.00 and 2478.95 MHz (nRF24 channels 2, 48 and 79) |
+| Hopping | 3 packets per channel, then the next channel. A full round takes about 11.69 ms |
+| Packet spacing | about 1245 µs on one channel |
+| CRC / whitening | none on the radio level, the frame is sent as is |
 
-## Packet on air (byte-aligned)
+## Packet
 
 ```
  AA    CC CC CC CC    B9 A1 99    0D BF 29 | c0 c1 | a0 a1 a2 a3 | x0 x1 | t0 t1 t2 t3 t4 t5
- ───   ───────────    ────────    ───────────────────────────────────────────────────────
  pre-  sync lead-in   sync        17-byte frame
- amble (1100 ×8)
+ amble (1100 x8)
 ```
 
-- **`AA` (10101010) is the preamble — and it is essential.** Every digital receiver used during
-  the investigation (nRF24, CC2500 in packet mode) strips it, so for a long time the transmitter
-  sent `1001100` + `1100×8` instead. The lamp then decodes only ~30 % of taps. With `AA` in
-  front, it decodes every tap. My transmitter sends `AA AA AA AA` (a longer preamble is harmless).
-- `CC CC CC CC B9 A1 99` is constant. The nRF24 can lock on `B9 A1 99` as a 3-byte address.
-- Nothing fixed follows the frame (no trailer).
+- `AA` (10101010) is the preamble, and the lamp needs it. The nRF24 and the CC2500 in packet
+  mode both strip it, so for a long time my transmitter sent `1001100` + `1100` x8 instead.
+  With that the lamp only reacted to about 30% of presses. With `AA` in front it reacts every
+  time. I send `AA AA AA AA`, a longer preamble doesn't hurt.
+- `CC CC CC CC B9 A1 99` never changes. The nRF24 can use `B9 A1 99` as a 3-byte address.
+- Nothing fixed comes after the frame, so there is no trailer.
 
-### Frame fields
+### Frame
 
 | Bytes | Meaning |
 |---|---|
-| 0–2 `0D BF 29` | constant (remote ID?) |
-| 3–4 | counter (8-state cycle, see below) |
-| 5–8 | action: which button, and press vs. release |
-| 9–10 | `A1 B6` for most buttons (differs for buttons 6 and 8) |
-| 11–16 | check bytes — a linear (GF(2)) function of the other fields |
+| 0-2 `0D BF 29` | constant (probably the remote ID) |
+| 3-4 | counter (8 states, see below) |
+| 5-8 | action: which button, and press or release |
+| 9-10 | `A1 B6` for most buttons (different for buttons 6 and 8) |
+| 11-16 | check bytes, a linear (GF(2)) function of the rest |
 
-The frame is **linear over GF(2)**: XOR-ing two valid frames and a third valid frame gives a
-fourth valid frame. That is what made it possible to synthesise every button at every counter
-state from a handful of captures.
+The frame is linear over GF(2). If you XOR three valid frames together you get another valid
+frame. That's how I could generate every button at every counter state from a few captures.
 
-## Counter: an 8-state cycle that the lamp ignores
+## Counter
 
-The remote steps one global counter (shared by all buttons) through 8 states, in this order,
-wrapping around:
-
-```
-release counter:  B922 → A832 → A911 → B801 → 8A02 → 9B12 → 9A31 → 8B21 → …
-press counter:    8B30 → B933 → A823 → A900 → B810 → 8A13 → 9B03 → 9A20 → …
-```
-
-It looks like a rolling code, but **the lamp does not check it**: sending the same state three
-times toggles the lamp three times. Each press+release = one action, whatever the counter is.
-(Consequence: never "repeat for reliability" — every repeat is another toggle.)
-
-## A button press
+The remote has one counter shared by all buttons. It goes through 8 states in this order and
+then starts over:
 
 ```
- press frame  ×  (≈100 ms for a tap, or as long as the button is held)
- release frame ×  ≈1.6 s
+release counter:  B922, A832, A911, B801, 8A02, 9B12, 9A31, 8B21
+press counter:    8B30, B933, A823, A900, B810, 8A13, 9B03, 9A20
 ```
 
-- **Release frame — the same for all 8 buttons** (it just says "button up").
-- **Press frame — button-specific.** For button *b* at counter state *s*:
+It looks like a rolling code, but the lamp doesn't check it. Sending the same state three
+times toggles the lamp three times, so every press + release counts as one action no matter
+what the counter is. Because of this you shouldn't repeat a command for reliability, since each
+repeat is another toggle.
+
+## Button presses
+
+A press looks like this on air:
+
+```
+press frame,   repeated for about 100 ms on a tap, or for as long as the button is held
+release frame, repeated for about 1.6 s
+```
+
+- The release frame is the same for all 8 buttons.
+- The press frame depends on the button. For button *b* at counter state *s*:
 
   `press[b][s] = press_onoff[s] XOR BTN_XOR[b]`
 
-- **Hold** = the same press frame, repeated for as long as you hold the button, then the
-  normal release. Brightness and colour temperature ramp while the press frame keeps coming.
+- A hold is the same press frame repeated for as long as the button is held, followed by the
+  normal release. Brightness and colour temperature keep changing while the press frame is
+  being sent.
 
-### Release frames (all buttons)
+### Release frames (same for all buttons)
 
 | # | counter | frame |
 |---|---|---|
@@ -104,8 +106,8 @@ Press state *i* pairs with release state *i*.
 
 ### Button table
 
-Button numbers are the order I recorded them in (they are also the transmitter's keys 1–8). `BTN_XOR` is constant
-across all counter states (verified on 3–5 captured states per button).
+The numbers are the order I recorded the buttons in, and they are also the keys 1-8 in the
+transmitter. `BTN_XOR` came out the same for every counter state I captured (3 to 5 per button).
 
 | # | Function | `BTN_XOR` (17 bytes) |
 |---|---|---|
@@ -118,10 +120,9 @@ across all counter states (verified on 3–5 captured states per button).
 | 7 | Colour temperature cooler | `00 00 00 00 00 00 11 90 BB 00 00 10 22 68 D2 24 3B` |
 | 8 | Colour temperature warmer | `00 00 00 00 00 00 11 91 98 88 00 11 01 5D E8 8B 94` |
 
-## Quirks seen but not needed
+## Other things I noticed
 
-- Within each channel visit, the packet that follows 1.25 ms after the first is garbled from
-  byte 9 onward (seen on both the nRF24 and the CC2500 — about half of all packets). The lamp
-  works fine without reproducing this, so it is probably a quirk of the remote's firmware.
-- The lamp has no state feedback: it never transmits, so Home Assistant cannot know whether
-  it is on or off.
+- On each channel, the second packet (1.25 ms after the first) is garbled from byte 9 onwards.
+  I saw this on both the nRF24 and the CC2500, and it's about half of all packets. The lamp works
+  fine without me copying this, so I think it's just a quirk in the remote's firmware.
+- The lamp never transmits anything, so Home Assistant can't know if it's on or off.
