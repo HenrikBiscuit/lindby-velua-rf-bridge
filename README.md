@@ -136,6 +136,8 @@ firmware/esphome/               the same transmitter as an ESPHome device for Ho
 tools/cc2500-raw-capture/       CC2500 raw capture without sync word (found the preamble)
 tools/nrf24-button-recorder/    nRF24 recorder I used to decode the buttons
 tools/a7105-scanner/            A7105 bring-up and scanner (didn't work out)
+tools/nrf24-transmitter-test/   nRF24 as a cheaper transmitter (lamp ignored it)
+tools/a7105-transmitter-test/   A7105 as a cheaper transmitter, with a sweep (lamp ignored it)
 archive/                        older transmitter and receiver versions (v3 to v9)
 evidence/                       serial logs from the important steps
 docs/protocol.md                protocol notes, frames and button table
@@ -155,6 +157,13 @@ docs/hardware.md                the hardware I used and how it's wired
 
 Another remote will most likely have a different ID (the `0D BF 29` bytes and the check bytes),
 so you would have to record your own with `tools/nrf24-button-recorder` and replace the tables.
+
+## Cheaper radios
+
+After it worked I tried replacing the CC2500 with cheaper radios. An nRF24L01+ and an A7105
+both sent the exact same packet with the same timing, and the lamp ignored both. I think they
+can't shift the frequency far enough (the remote uses around ±250 kHz). The details are in
+[docs/hardware.md](docs/hardware.md).
 
 ## Equipment I used
 

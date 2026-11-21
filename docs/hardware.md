@@ -53,19 +53,33 @@ I run it at `PATABLE 0x60`, which is enough to reach the lamp from the next room
 | MISO | GPIO13 |
 | IRQ | GPIO14 |
 
-## Cheaper options I haven't tried
+## Cheaper radios I tried
 
 To just control the lamp I only use the ESP32 and the CC2500 module now. The receiver boards
-were only for figuring out the protocol. If I built it again I'd probably try one of these:
+were only for figuring out the protocol. Afterwards I tried whether a cheaper radio could do the
+transmitting too. Both transmitted fine, and the lamp ignored both.
 
-- A plain CC2500 module without the PA. It's the same chip and the same code, just without
-  the PA/LNA pins. The original remote only has a small PCB antenna, so I expect the range to
-  be fine, but I haven't tested it.
-- An nRF24L01+ as the transmitter. The nRF24 always sends a one-byte preamble (`AA` when the
-  address starts with a 1 bit) and an address of up to 5 bytes. With the address set to
-  `CC CC CC CC B9` and the payload `A1 99` + the 17-byte frame (CRC off, 250 kbps), the packet
-  should come out exactly like the remote's. The open question is whether its narrower
-  deviation is good enough for the lamp.
+- nRF24L01+. The nRF24 always sends a one-byte preamble (`AA` when the address starts with
+  a 1 bit) and an address of up to 5 bytes. With the address set to `CC CC CC CC B9` and the
+  payload `A1 99` + the 17-byte frame (CRC off, 250 kbps), the packet is byte for byte the
+  remote's, sent with the same timing. The lamp never reacted. My best guess is the frequency
+  deviation: the nRF24 shifts about ±160 kHz at 250 kbps, while the remote uses around
+  ±250 kHz and my working CC2500 setup uses about ±280 kHz.
+- A7105 (XL7105-SY-B). Same idea: 4-byte preamble, ID code `CC CC CC CC`, payload
+  `B9 A1 99` + frame, no CRC/FEC/whitening, same timing. I ran an automatic sweep of 52 single
+  On/off taps: normal, inverted and LSB-first bits, each with 13 different deviation settings.
+  None of them did anything. I couldn't get hold of a readable datasheet, so the deviation
+  settings were partly guesswork, but together with the A7105 never being able to receive the
+  remote either, I think it just can't produce a wide enough deviation.
+
+The test sketches are in [`tools/nrf24-transmitter-test`](../tools/nrf24-transmitter-test) and
+[`tools/a7105-transmitter-test`](../tools/a7105-transmitter-test).
+
+Things I haven't tried:
+
+- A plain CC2500 module without the PA. It's the same chip and the same code, just without the
+  PA/LNA pins, so it should work. The original remote only has a small PCB antenna, so I expect
+  the range to be fine. I have one, but haven't wired it up.
 - A smaller ESP32 like an ESP32-C3 SuperMini. Any ESP32 with SPI and Wi-Fi should do.
 
 An RTL-SDR won't help here since it only goes up to around 1.7 GHz. A HackRF would have worked,
