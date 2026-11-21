@@ -8,6 +8,11 @@ It took a lot longer than I expected, but it works now. An ESP32-S3 with a CC250
 send all 8 buttons (both short taps and holds), and the lamp reacts every time, even from the
 next room with a couple of doors in between.
 
+<p align="center">
+  <img src="docs/img/LampInQuestion.jpg" alt="The Lindby Velua lamp on the ceiling" height="300">
+  <img src="docs/img/RemoteInQuestion.jpg" alt="The original 8-button remote" height="300">
+</p>
+
 ```
 Home Assistant --(Wi-Fi)--> ESP32-S3 --SPI--> CC2500 + CC2591 PA ))) 2.4 GHz ))) lamp
 ```
@@ -24,6 +29,13 @@ The protocol details are in [docs/protocol.md](docs/protocol.md) and the hardwar
 
 The remote's PCB says YM-2.4G-B. It has one unmarked 16-pin chip, a 16 MHz crystal and a PCB
 antenna, so the only thing I really knew was "2.4 GHz".
+
+<p align="center">
+  <img src="docs/img/RemotePCBFront.jpg" alt="Remote PCB, button side" height="380">
+  <img src="docs/img/RemotePCBBack.jpg" alt="Remote PCB, chip side with the unmarked SOP16, 16 MHz crystal and PCB antenna" height="380">
+</p>
+<p align="center"><em>The remote's PCB. Button contacts on one side, the unmarked radio chip,
+16 MHz crystal and meander antenna on the other.</em></p>
 
 I started with an nRF24L01+ in the well known promiscuous mode and narrowed it down from
 there. The remote uses 2-FSK at 250 kbps and hops between three channels (2402, 2448 and
@@ -47,7 +59,7 @@ is a bad idea, because every repeat is another toggle.
 
 ### A bit-perfect copy that only worked 30% of the time
 
-For transmitting I used a TI CC2500 module with a CC2591 power amplifier. I checked my own
+For transmitting I used a TI CC2500 module with a CC2591 power amplifier (a VT-CC2500PA-S2). I checked my own
 transmissions with the nRF24 and they were identical to the remote's, bit for bit. Even so,
 the lamp only reacted to roughly one press in three.
 
@@ -166,6 +178,12 @@ can't shift the frequency far enough (the remote uses around ±250 kHz). The det
 [docs/hardware.md](docs/hardware.md).
 
 ## Equipment I used
+
+<p align="center">
+  <img src="docs/img/Setup.jpg" alt="ESP32-S3 DevKit wired to the CC2500 module with an external antenna" width="600">
+</p>
+<p align="center"><em>The working transmitter: ESP32-S3-DevKitC-1, VT-CC2500PA-S2 module and an
+external 2.4 GHz antenna on an IPEX pigtail.</em></p>
 
 - 3x ESP32-S3-DevKitC-1
 - VT-CC2500PA-S2 module (CC2500 + CC2591)

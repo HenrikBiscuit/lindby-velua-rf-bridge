@@ -107,7 +107,8 @@ Press state *i* pairs with release state *i*.
 ### Button table
 
 The numbers are the order I recorded the buttons in, and they are also the keys 1-8 in the
-transmitter. `BTN_XOR` came out the same for every counter state I captured (3 to 5 per button).
+transmitter. On the remote that is the left column from top to bottom (1-4), then the right
+column from top to bottom (5-8). `BTN_XOR` came out the same for every counter state I captured (3 to 5 per button).
 
 | # | Function | `BTN_XOR` (17 bytes) |
 |---|---|---|

@@ -24,6 +24,13 @@ Some things I ran into with these parts:
 
 ### Transmitter (ESP32-S3 to VT-CC2500PA-S2)
 
+<p align="center">
+  <img src="img/CC2500Module.jpg" alt="VT-CC2500PA-S2 module, top side with CC2500 and CC2591" height="320">
+  <img src="img/CC2500Soldered.jpg" alt="VT-CC2500PA-S2 module, back side with pin labels and wires soldered on" height="320">
+</p>
+<p align="center"><em>The VT-CC2500PA-S2: CC2500 and CC2591 on top, pin labels on the back.
+I soldered wires straight onto the castellated pads.</em></p>
+
 | CC2500PA pad | ESP32-S3 |
 |---|---|
 | VCC | 3V3 |
