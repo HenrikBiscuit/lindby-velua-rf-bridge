@@ -23,6 +23,24 @@ Status: all 8 buttons work. There is also an ESPHome version in
 The protocol details are in [docs/protocol.md](docs/protocol.md) and the hardware I used is in
 [docs/hardware.md](docs/hardware.md).
 
+## What you need to build one
+
+Only four parts:
+
+1. An ESP32 (I used an ESP32-S3-DevKitC-1, but any ESP32 with Wi-Fi and SPI will do)
+2. A CC2500 module (I used a VT-CC2500PA-S2, which has a CC2591 amplifier on it)
+3. An IPEX/U.FL to SMA pigtail
+4. A 2.4 GHz antenna with an SMA connector
+
+Plus a few wires and a USB power supply. Wire it up as in [docs/hardware.md](docs/hardware.md)
+and flash [firmware/esphome](firmware/esphome) (or [firmware/velua-transmitter](firmware/velua-transmitter)
+if you just want a serial monitor). The nRF24 and A7105 boards in the story were only for
+figuring out the protocol, you don't need them.
+
+If your remote turns out to use a different ID than mine, the same ESP32 + CC2500 can capture
+its raw signal with [tools/cc2500-raw-capture](tools/cc2500-raw-capture). It searches for my
+remote's sync word (`B9 A1 99`), so you may have to change that if yours is different.
+
 ## How it went
 
 ### Finding the signal
