@@ -28,7 +28,8 @@ The protocol details are in [docs/protocol.md](docs/protocol.md) and the hardwar
 Only four parts:
 
 1. An ESP32 (I used an ESP32-S3-DevKitC-1, but any ESP32 with Wi-Fi and SPI will do)
-2. A CC2500 module (I used a VT-CC2500PA-S2, which has a CC2591 amplifier on it)
+2. A CC2500 module. I used a VT-CC2500PA-S2, which has a CC2591 amplifier on it. A plain
+   CC2500 module without the amplifier should work too, but I haven't tested that.
 3. An IPEX/U.FL to SMA pigtail
 4. A 2.4 GHz antenna with an SMA connector
 
