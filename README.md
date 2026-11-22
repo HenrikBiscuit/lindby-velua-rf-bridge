@@ -38,6 +38,13 @@ and flash [firmware/esphome](firmware/esphome) (or [firmware/velua-transmitter](
 if you just want a serial monitor). The nRF24 and A7105 boards in the story were only for
 figuring out the protocol, you don't need them.
 
+There is also a 3D-printed box for it in [enclosure](enclosure), with room for a second ESP32, a
+CC1101 433 MHz module and a USB-C power input.
+
+<p align="center">
+  <img src="docs/img/Enclosure.png" alt="Render of the 3D-printed enclosure" width="450">
+</p>
+
 If your remote turns out to use a different ID than mine, the same ESP32 + CC2500 can capture
 its raw signal with [tools/cc2500-raw-capture](tools/cc2500-raw-capture). It searches for my
 remote's sync word (`B9 A1 99`), so you may have to change that if yours is different.
@@ -169,6 +176,7 @@ tools/nrf24-button-recorder/    nRF24 recorder I used to decode the buttons
 tools/a7105-scanner/            A7105 bring-up and scanner (didn't work out)
 tools/nrf24-transmitter-test/   nRF24 as a cheaper transmitter (lamp ignored it)
 tools/a7105-transmitter-test/   A7105 as a cheaper transmitter, with a sweep (lamp ignored it)
+enclosure/                      3D-printed box (STL, STEP, SolidCraft source and fit-test prints)
 archive/                        older transmitter and receiver versions (v3 to v9)
 evidence/                       serial logs from the important steps
 docs/protocol.md                protocol notes, frames and button table
