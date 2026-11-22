@@ -44,6 +44,13 @@ small test prints in [test_prints](test_prints) before printing the full box.
 <p align="center"><em>The printed base and lid with the inserts melted in, everything fitted, and the
 closed box.</em></p>
 
+### Power
+
+The PD trigger board is set to 5 V and is the only power input. Its 5V and GND go into two
+3-way Wago lever connectors (one for 5V, one for GND), which split them to the 5V and GND pins
+of both ESP32s. The CC2500 runs off its ESP32's 3V3 pin, as in
+[docs/hardware.md](../docs/hardware.md).
+
 The ESP32's own USB ports are not reachable when the box is closed, so update the firmware over
 the air (ESPHome does this).
 
@@ -52,6 +59,7 @@ the air (ESPHome does this).
 - 6x M3 heat-set inserts (hole 4.0 mm) and 6x M3x12 screws: 4 for the lid, 2 for the CC1101
 - 2x M2 heat-set inserts (hole 3.2 mm) and 2x M2x6 screws: CC2500 and PD board
 - 1x IPEX/U.FL to SMA bulkhead pigtail and 2x 2.4 GHz / 433 MHz antennas
+- 2x 3-way Wago lever connectors (221 series) to split the 5 V power to both ESP32s
 
 The base is about 100 g of PLA at 100 % infill and the lid about 24 g, so less with normal infill.
 
