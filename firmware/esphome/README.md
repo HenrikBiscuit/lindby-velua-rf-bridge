@@ -14,7 +14,7 @@ component, and `velua-bridge.yaml` is the device config.
   (100 is a tap), for use in scripts and automations
 
 <p align="center">
-  <img src="../../docs/img/Demo.gif" alt="The Velua lamp buttons in Home Assistant turning the lamp on and dimming it" width="320">
+  <img src="../../docs/img/Demo.gif" alt="The Velua lamp buttons in Home Assistant turning the lamp on and dimming it" width="360">
 </p>
 
 The lamp never sends anything back, so there is no on/off state in Home Assistant. The buttons
