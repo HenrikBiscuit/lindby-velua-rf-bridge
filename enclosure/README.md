@@ -36,6 +36,14 @@ small test prints in [test_prints](test_prints) before printing the full box.
 | CC1101 (433 MHz, with SMA) | Two M3 screws through its own mounting holes into a pedestal. The SMA goes straight through the back wall. |
 | USB-C PD trigger board | In a pocket, with a printed peg in the 3V3 output hole and an M2 screw in the GND hole. The USB-C socket lines up with the opening in the back wall. Set the DIP switches to **5 V** before connecting anything. |
 
+<p align="center">
+  <img src="../docs/img/3DPrintedCase.jpg" alt="The printed base and lid, empty, with heat-set inserts in place" height="320">
+  <img src="../docs/img/3DPrintedCaseWithParts.jpg" alt="The base with both ESP32-S3 boards, the radio modules and the antennas fitted" height="320">
+  <img src="../docs/img/3DPrintedCaseFullyAssembled.jpg" alt="The closed box with the lid screwed on" height="320">
+</p>
+<p align="center"><em>The printed base and lid with the inserts melted in, everything fitted, and the
+closed box.</em></p>
+
 The ESP32's own USB ports are not reachable when the box is closed, so update the firmware over
 the air (ESPHome does this).
 

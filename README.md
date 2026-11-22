@@ -44,8 +44,10 @@ module and a USB-C power input. That's more than most people need for just this 
 can use it as a starting point for your own enclosure.
 
 <p align="center">
-  <img src="docs/img/Enclosure.png" alt="Render of the 3D-printed enclosure" width="450">
+  <img src="docs/img/Enclosure.png" alt="Render of the 3D-printed enclosure" height="300">
+  <img src="docs/img/3DPrintedCaseFullyAssembled.jpg" alt="The printed enclosure, closed, with both antennas on the back" height="300">
 </p>
+<p align="center"><em>The design and the finished box.</em></p>
 
 If your remote turns out to use a different ID than mine, the same ESP32 + CC2500 can capture
 its raw signal with [tools/cc2500-raw-capture](tools/cc2500-raw-capture). It searches for my
