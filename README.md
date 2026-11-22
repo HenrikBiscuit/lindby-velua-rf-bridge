@@ -40,7 +40,7 @@ Only four parts:
 
 Plus a few wires and a USB power supply. Wire it up as in [docs/hardware.md](docs/hardware.md)
 and flash [firmware/esphome](firmware/esphome) (or [firmware/velua-transmitter](firmware/velua-transmitter)
-if you just want a serial monitor). The nRF24 and A7105 boards in the story were only for
+if you just want a serial monitor or a [spare remote](#using-it-as-a-spare-remote)). The nRF24 and A7105 boards in the story were only for
 figuring out the protocol, you don't need them.
 
 There is also a 3D-printed box in [enclosure](enclosure). It's made for my own setup, which
@@ -194,6 +194,32 @@ docs/hardware.md                the hardware I used and how it's wired
 
 ## Running it
 
+### With Home Assistant (ESPHome)
+
+This is the version I use every day.
+
+1. Wire the ESP32-S3 to the CC2500 module as described in [docs/hardware.md](docs/hardware.md).
+2. Install ESPHome (`pip install esphome`) and go to [firmware/esphome](firmware/esphome).
+3. Copy `secrets.example.yaml` to `secrets.yaml` and fill in your Wi-Fi name and password, an
+   API key and an OTA password. The comment in the file shows how to generate the API key.
+4. Plug the ESP32 in over USB and flash it:
+   ```
+   esphome run velua-bridge.yaml
+   ```
+5. Home Assistant finds the device under Settings > Devices & services. Add it and paste the
+   API key from `secrets.yaml` when it asks.
+
+You then get a button for each of the 8 remote buttons, "(hold)" buttons for dimming and colour
+temperature, and an action for scripts and automations. Later updates go over Wi-Fi with the
+same `esphome run` command. On Windows, ESP-IDF can't build in a folder with spaces in the path.
+The top of `velua-bridge.yaml` shows how to build somewhere else. If you use a different ESP32,
+change `board` and the pins in `velua-bridge.yaml`. More in
+[firmware/esphome/README.md](firmware/esphome/README.md).
+
+### Without Home Assistant (serial monitor)
+
+This is the version I used for testing. It has no Wi-Fi at all.
+
 1. Wire the ESP32-S3 to the CC2500 module as described in [docs/hardware.md](docs/hardware.md).
 2. Build and flash with PlatformIO:
    ```
@@ -205,6 +231,20 @@ docs/hardware.md                the hardware I used and how it's wired
 
 Another remote will most likely have a different ID (the `0D BF 29` bytes and the check bytes),
 so you would have to record your own with `tools/nrf24-button-recorder` and replace the tables.
+
+## Using it as a spare remote
+
+You don't need Home Assistant or Wi-Fi for any of this. If you've lost the remote or just want a
+second one, the serial version in [firmware/velua-transmitter](firmware/velua-transmitter)
+already works on its own. The BOOT button on the ESP32 board sends On/off.
+
+To make a full 8-button remote, wire 8 push buttons from free GPIOs to GND and call
+`action(button, hold)` in `loop()` for each of them, the same way the BOOT button does now
+(`hold = true` keeps the button pressed for `holdMs`, which is how dimming works). A plain
+CC2500 module without the amplifier and a small ESP32 (like an ESP32-C3 SuperMini) would make
+it a lot smaller. For a battery-powered remote, put the CC2500 to sleep (`SPWD`) after each
+press and let the ESP32 deep-sleep until a button wakes it. I haven't built this version, but
+the radio part is exactly the code that works now.
 
 ## Cheaper radios
 
