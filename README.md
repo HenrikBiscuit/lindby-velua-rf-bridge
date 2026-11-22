@@ -14,7 +14,7 @@ next room with a couple of doors in between.
 </p>
 
 <p align="center">
-  <img src="docs/img/Demo.gif" alt="Turning the lamp on and dimming it from Home Assistant on a phone" width="360">
+  <img src="docs/img/Demo.webp" alt="Turning the lamp on and dimming it from Home Assistant on a phone" width="360">
 </p>
 <p align="center"><em>Turning the lamp on and dimming it from Home Assistant.</em></p>
 
