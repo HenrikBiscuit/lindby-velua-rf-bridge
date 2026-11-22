@@ -8,6 +8,12 @@ All connectors are on the back: the two SMA antennas side by side and the USB-C 
   <img src="../docs/img/Enclosure.png" alt="Render of the enclosure with the lid shown see-through" width="600">
 </p>
 
+This box is built for my own setup, which is a bit niche: it controls more than just this lamp
+(the lights and my curtains), which is why there are two ESP32s and a second radio. You probably
+don't need all of that. Feel free to use it as a starting point for your own enclosure instead.
+The SolidCraft source is parametric, and the board mounts, wall stubs, screw pillars and test
+prints are easy to reuse or remove.
+
 Designed in SolidCraft. Everything prints without supports, and I checked all the fits with the
 small test prints in [test_prints](test_prints) before printing the full box.
 

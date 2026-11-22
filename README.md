@@ -38,8 +38,10 @@ and flash [firmware/esphome](firmware/esphome) (or [firmware/velua-transmitter](
 if you just want a serial monitor). The nRF24 and A7105 boards in the story were only for
 figuring out the protocol, you don't need them.
 
-There is also a 3D-printed box for it in [enclosure](enclosure), with room for a second ESP32, a
-CC1101 433 MHz module and a USB-C power input.
+There is also a 3D-printed box in [enclosure](enclosure). It's made for my own setup, which
+controls both the lights and my curtains, so it has room for a second ESP32, a CC1101 433 MHz
+module and a USB-C power input. That's more than most people need for just this lamp, but you
+can use it as a starting point for your own enclosure.
 
 <p align="center">
   <img src="docs/img/Enclosure.png" alt="Render of the 3D-printed enclosure" width="450">
