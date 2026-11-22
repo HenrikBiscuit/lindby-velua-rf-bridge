@@ -13,6 +13,11 @@ next room with a couple of doors in between.
   <img src="docs/img/RemoteInQuestion.jpg" alt="The original 8-button remote" height="300">
 </p>
 
+<p align="center">
+  <img src="docs/img/Demo.gif" alt="Turning the lamp on and dimming it from Home Assistant on a phone" width="320">
+</p>
+<p align="center"><em>Turning the lamp on and dimming it from Home Assistant.</em></p>
+
 ```
 Home Assistant --(Wi-Fi)--> ESP32-S3 --SPI--> CC2500 + CC2591 PA ))) 2.4 GHz ))) lamp
 ```
